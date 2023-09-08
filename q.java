@@ -1,9 +1,12 @@
 import java.util.Scanner;
 import java.lang.Math;
+import java.util.Random;
+import java.util.Arrays;
 public class questions
 {
     public static Scanner myscanner  = new Scanner(System.in);
-   public static void q1(){
+    public static Random rand = new Random();
+    public static void q1(){
        int sum = 0;
        System.out.println("Enter the first number: ");
        sum = sum + myscanner.nextInt();
@@ -108,4 +111,63 @@ public class questions
             System.out.println("The two numbers are the same");
         }
     }
+    
+    public static void q7(){
+        int score = 0;
+        for (int i = 0; i<3; i++){
+            int randNum1 = rand.nextInt(100);
+            int randNum2 = rand.nextInt(100);
+            System.out.println("What is "+randNum1+"+"+randNum2);
+            int ans = myscanner.nextInt();
+            if(ans == randNum1+randNum2){
+                score++;
+                System.out.println("Correct");
+            }
+            else{
+                System.out.println("Wrong");
+            }
+        }
+        System.out.println("You got "+score+" out of 3");
+    }
+    
+    public static void q8(){
+        int num1, num2, num3;
+        int sort[] = new int[3];
+        System.out.println("Enter the first number: ");
+        num1 = myscanner.nextInt();
+        sort[0] = num1;
+        System.out.println("Enter the second number: ");
+        num2 = myscanner.nextInt();
+        sort[1] = num2;
+        System.out.println("Enter the third number: ");
+        num3 = myscanner.nextInt();
+        sort[2] = num3;
+        Arrays.sort(sort);
+        int smallest = sort[0];
+        System.out.println("The smallest number is "+smallest);
+    }
+    
+    public static void q9(){
+        int yourAge;
+        while(true){
+            System.out.println("What is your age ");
+            yourAge = myscanner.nextInt();
+            if (yourAge >= 0){
+                break;
+            }
+        }
+        if (yourAge <13){
+            System.out.println("You are a child");
+        }
+        else if (yourAge >= 13 && yourAge <= 19){
+            System.out.println("You are a teenager");
+        }
+        else if (yourAge >= 20 && yourAge <= 65){
+            System.out.println("You are an adult");
+        }
+        else{
+            System.out.println("You are a senior citizen");
+        }
+    }
+    
 }
