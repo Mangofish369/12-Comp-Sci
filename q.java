@@ -170,4 +170,17 @@ public class questions
         }
     }
     
+    public static void q10(){
+        int nums [] = new int[5];
+        for(int i = 0; i<5;i++){
+            System.out.println("Enter the first number: ");
+            nums[i] = myscanner.nextInt();
+        }
+        for(int i: nums){
+            String str = "#";
+            String repeated = str.repeat(i);
+            System.out.println(repeated);
+        }
+    }
+    
 }
