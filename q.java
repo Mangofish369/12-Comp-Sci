@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.lang.Math;
 import java.util.Random;
 import java.util.Arrays;
-public class questions
+public class q
 {
     public static Scanner myscanner  = new Scanner(System.in);
     public static Random rand = new Random();

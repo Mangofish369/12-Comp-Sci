@@ -17,15 +17,14 @@ public class questions
    }
    
    public static void q2(){
-      int n1, n2, n3;
-      System.out.println("Enter the first number: ");
-      n1 = myscanner.nextInt();
-      System.out.println("Enter the second number: ");
-      n2 = myscanner.nextInt();
-      System.out.println("Enter the third number: ");
-      n3 = myscanner.nextInt();
-      double ans = ((double)n1 + (double)n2 + (double)n3)/3;
-      System.out.println("The average of the three numbers is: " + ans);
+      int sum = 0;
+      String[] sufix = {"st","nd","rd"};
+      for (int i = 0; i<3; i++){
+           System.out.println("Enter "+(i+1)+sufix[i]+" number");
+           sum = sum + myscanner.nextInt();
+       }
+      double average = (double)sum/3;
+      System.out.println(average);
    }
    
    public static void q3(){
