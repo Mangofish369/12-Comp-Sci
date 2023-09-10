@@ -28,40 +28,29 @@ public class questions
    }
    
    public static void q3(){
-       int course1, course2, course3, course4;
-       System.out.println("Enter your mark on course 1: ");
-       course1 = myscanner.nextInt();
-       System.out.println("Enter your mark on course 2: ");
-       course2 = myscanner.nextInt();
-       System.out.println("Enter your mark on course 3: ");
-       course3 = myscanner.nextInt();
-       System.out.println("Enter your mark on course 4: ");
-       course4 = myscanner.nextInt();
-       double average = ((double)course1 + (double)course2 + (double)course3 + (double)course4)/4;
+       int sum = 0;
+       String[] sufix = {"st","nd","rd","th"};
+       for (int i = 0; i<4; i++){
+           System.out.println("Enter "+(i+1)+sufix[i]+" course mark");
+           sum = sum + myscanner.nextInt();
+       }
+       double average = (double)sum/4;
        System.out.println("Your course average is: " + average);
     }
     
     public static void q4(){
-       double course1, course2, course3, course4;
-       System.out.println("Enter your mark on course 1: ");
-       course1 = myscanner.nextDouble();
-       System.out.println("Enter your mark on course 2: ");
-       course2 = myscanner.nextDouble();
-       System.out.println("Enter your mark on course 3: ");
-       course3 = myscanner.nextDouble();
-       System.out.println("Enter your mark on course 4: ");
-       course4 = myscanner.nextDouble();
-       
-       double unround = (course1 + course2 + course3 + course4)/4;
-       System.out.println(unround);
-       unround = unround * 10;
-       int nodec = (int)unround; // Remove all decimals after first one
-       double rounded = (double)nodec;
-       rounded = rounded/10;
-       System.out.println("Your rounded course average is: "+rounded);
-       
+       int sum = 0;
+       String[] sufix = {"st","nd","rd","th"};
+       for (int i = 0; i<4; i++){
+           System.out.println("Enter "+(i+1)+sufix[i]+" course mark");
+           sum = sum + myscanner.nextInt();
+       }
+       double unroundedAverage = (double)sum * 2.5; //Average/4, then mutiplied by 10 for one decimal place, therefore just mutiply by 10/4 = 2.5 as a whole to shift the first decimail forward 
+       double round = Math.round(unroundedAverage); //Round any decimals after the first one
+       double roundedAverage = round/10; // Return the first decimal back to it's position
+       System.out.println("Your rounded course average is: " + roundedAverage);
     }
-    
+
     public static void q5(){
         double n1, n2;
        while(true){
