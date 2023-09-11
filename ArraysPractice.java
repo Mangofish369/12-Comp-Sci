@@ -44,9 +44,15 @@ public class ArraysPractice
                 lowest = i;
             }
         }
+        
+        //Average value
+
+        double average =(double)sum/numberOfValues;
+        
         System.out.println (sum);
         System.out.println ("Highest: "+highest);
         System.out.println ("Lowest: "+lowest);
+        System.out.println ("Average: "+average);
     }
     
     public static void diceRoll(){
@@ -71,6 +77,9 @@ public class ArraysPractice
                     results[k] += 1;
                 }
             }
+        }
+        for (int l=0; l < results.length; l++){
+            System.out.println((l+2)+" :"+ ((double)results[l]/numRolls)*100+"%");
         }
         System.out.println(Arrays.toString(sums));
         System.out.println(Arrays.toString(results));
