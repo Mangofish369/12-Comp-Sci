@@ -58,28 +58,40 @@ public class ArraysPractice
     public static void diceRoll(){
         int numRolls;
         int [] sums; int [] results;
-        int numDice = 2;
-        int sides = 6;
-        int totalCominations = (sides+sides) -1; 
-        results = new int[totalCominations];
+        int numDice;
+        int sides;
+                
+        System.out.println ("How many sides do you want on your dice?");
+        sides = scan.nextInt();
+        
+        
+        System.out.println ("How many dice do you want?");
+        numDice = scan.nextInt();
        
         System.out.println ("How many rolls do you want?");
         numRolls = scan.nextInt();
         sums = new int[numRolls]; 
         
+        int totalCominations = (sides*numDice) -(numDice-1);
+        System.out.println(totalCominations);
+        results = new int[totalCominations];
+        
         for(int i = 0; i < numRolls; i++){
             for(int j = 0; j <numDice; j++){
-                int result = ((int)(Math.random() * 6) + 1);
+                int result = ((int)(Math.random() * sides) + 1);
                 sums[i] = sums[i] + result;
             }
             for (int k = 0; k< results.length; k++){
-                if(sums[i] -2 == k){
+                if(sums[i] -numDice == k){
                     results[k] += 1;
                 }
             }
         }
-        for (int l=0; l < results.length; l++){
-            System.out.println((l+2)+" :"+ ((double)results[l]/numRolls)*100+"%");
+        System.out.println("------------------------Result Distribution------------------------");
+        for (int m=0; m < results.length; m++){
+            double percentage = (double)results[m]/numRolls*100;
+            double output = (double)Math.round(percentage * 10000) / 10000;
+            System.out.println((m+numDice)+" :"+ output+"%");
         }
         System.out.println(Arrays.toString(sums));
         System.out.println(Arrays.toString(results));
