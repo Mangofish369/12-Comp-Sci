@@ -45,10 +45,11 @@ public class questions
            System.out.println("Enter "+(i+1)+sufix[i]+" course mark");
            sum = sum + myscanner.nextInt();
        }
-       double unroundedAverage = (double)sum * 2.5; //Average/4, then mutiplied by 10 for one decimal place, therefore just mutiply by 10/4 = 2.5 as a whole to shift the first decimail forward 
-       double round = Math.round(unroundedAverage); //Round any decimals after the first one
-       double roundedAverage = round/10; // Return the first decimal back to it's position
+       // Divide total by 4, then multiply by 10 for one decimal place
+       // Round the number, and then shift back by one decimal place to get the final answer
+       double roundedAverage = (double)Math.round((double)sum/4 * 10)/10;
        System.out.println("Your rounded course average is: " + roundedAverage);
+       
     }
 
     public static void q5(){
