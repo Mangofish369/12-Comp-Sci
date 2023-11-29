@@ -178,8 +178,8 @@ public class q
         }
         for(int i: nums){
             String str = "#";
-            String repeated = str.repeat(i);
-            System.out.println(repeated);
+            //String repeated = str.repeat(i);
+            //System.out.println(repeated);
         }
     }
     

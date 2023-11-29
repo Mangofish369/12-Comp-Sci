@@ -166,8 +166,8 @@ public class questions
         }
         for(int i: nums){
             String str = "#";
-            String repeated = str.repeat(i);
-            System.out.println(repeated);
+            //String repeated = str.repeat(i);
+            //System.out.println(repeated);
         }
     }
     

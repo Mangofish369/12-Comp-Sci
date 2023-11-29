@@ -37,10 +37,30 @@ public class newQuestions
         Scanner input = new Scanner (System.in);
      
         map[0][0] = 1;
+        int [] currCordinate = {0,0}; 
         print2dArray(map);
         
         System.out.println("Please enter a direction (L, R, U, D) or Stop: ");
         String direction = input.nextLine(); 
+        while(direction != "Stop"){
+            print2dArray(map);
+            
+            System.out.println("Please enter a direction (L, R, U, D) or Stop: ");
+            direction = input.nextLine(); 
+        }
+    }
+    
+    public static void move(String direction, int [][] array, int [] coordinate){
+        // Find a way to return the new coordinate
+        int x = coordinate[0];
+        int y = coordinate [1];
+        if(direction.equals("L")){
+            array[x][y] = 0;
+            array[x-1][y] = 1;
+        } else if(direction.equals("R")){
+            array[x][y] = 0;
+            array[x+1][y] = 0;
+        }
     }
     
     public static void print2dArray(int [][] array){
