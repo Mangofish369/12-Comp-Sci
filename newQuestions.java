@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.Arrays; 
 import java.util.Scanner;
 import java.lang.ArrayIndexOutOfBoundsException;
-
+import java.lang.Exception;
 public class newQuestions
 {
     public static void Question1 (){
@@ -106,24 +106,20 @@ public class newQuestions
         
         System.out.println("Please enter y: ");
         int y = input.nextInt();
-        
-        String current = array[y][x];
         Boolean turnComplete = false;
         
         try{
+            String current = array[y][x];
             if(current == "-"){
                 array[y][x] = player;
                 turnComplete = true;
-            }
-            else{
+            } else{
                 System.out.println("INVALID – space is taken");
+                return turnComplete;
             }
         }
         catch (ArrayIndexOutOfBoundsException e){
-                System.out.println("Array index out of bounds");
-        }
-        catch (IndexOutOfBoundsException e){
-                System.out.println("Index out of bounds");
+            System.out.println("Coordinate is out of bounds");
         }
         return turnComplete;
     }
