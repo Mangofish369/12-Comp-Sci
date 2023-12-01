@@ -40,7 +40,7 @@ public class newQuestions
         populate2dArray(map,0);
         map[0][0] = 1;
         int [] currCordinate = {0,0}; 
-        print2dArray(map, width, height);
+        print2dArray(map);
         
         System.out.println("Please enter a direction (L, R, U, D) or Stop: ");
         String direction = input.nextLine(); 
@@ -48,7 +48,7 @@ public class newQuestions
             System.out.println(direction);
             try{
                 move(direction, map, currCordinate);
-                print2dArray(map, width, height);
+                print2dArray(map);
             }
             catch(ArrayIndexOutOfBoundsException e) {
                 System.out.println("Invalid – you cannot move in that direction from your current position");
@@ -58,8 +58,16 @@ public class newQuestions
         }
     }
     
+    public static void Question3(){
+        int size = 3;
+        String [][] grid = new String [size][size];
+        populate2dArray(grid, "-");
+        //print2dArray();
+    }
     /**
-     * 2D arrays function in a way where x-cordinates represent coloums and y-coordinates represent rows
+     * 2D arrays can better be visualized as a nested array
+     *  - The first value represents rows (aka y-cord)
+     *  - The second value represents the index of the nested array; you can imagine it as coloums in this case (aka x-cord)
      * To work around this, the x and y values must be switched around
      */
     public static void move(String direction, int [][] array, int [] coordinate){
@@ -84,9 +92,17 @@ public class newQuestions
         }
     }
     
+    
     public static void populate2dArray(int [][] array, int value){
-        for(int i = 0; i <5; i++){
-            for(int j = 0; j < 5; j++){
+        for(int i = 0; i <array.length; i++){
+            for(int j = 0; j < array.length; j++){
+                array[i][j] = value;
+            }
+        }
+    }
+    public static void populate2dArray(String [][] array, String value){
+        for(int i = 0; i<array.length; i++){
+            for(int j =0; j < array.length; j++){
                 array[i][j] = value;
             }
         }
@@ -97,9 +113,9 @@ public class newQuestions
         return coordinate;
     }
     
-    public static void print2dArray(int [][] array, int width, int height){
-        for(int i = 0; i <height; i++){
-            for(int j = 0; j < width; j++){
+    public static void print2dArray(int [][] array){
+        for(int i = 0; i <array.length; i++){
+            for(int j = 0; j < array.length; j++){
                 System.out.print(array[i][j] + "\t");
             }
             System.out.print("\n");
