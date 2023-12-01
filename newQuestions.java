@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.Arrays; 
 import java.util.Scanner;
 import java.lang.ArrayIndexOutOfBoundsException;
+
 public class newQuestions
 {
     public static void Question1 (){
@@ -62,8 +63,14 @@ public class newQuestions
         int size = 3;
         String [][] grid = new String [size][size];
         populate2dArray(grid, "-");
-        //print2dArray();
+        print2dArray(grid);
+        
+        while(!addPoint(grid, "X")){
+            addPoint(grid, "X");
+            print2dArray(grid);
+        }
     }
+    
     /**
      * 2D arrays can better be visualized as a nested array
      *  - The first value represents rows (aka y-cord)
@@ -92,6 +99,34 @@ public class newQuestions
         }
     }
     
+    public static boolean addPoint(String [][] array, String player){
+        Scanner input = new Scanner (System.in);
+        System.out.println("Please enter x: ");
+        int x = input.nextInt(); 
+        
+        System.out.println("Please enter y: ");
+        int y = input.nextInt();
+        
+        String current = array[y][x];
+        Boolean turnComplete = false;
+        
+        try{
+            if(current == "-"){
+                array[y][x] = player;
+                turnComplete = true;
+            }
+            else{
+                System.out.println("INVALID – space is taken");
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+                System.out.println("Array index out of bounds");
+        }
+        catch (IndexOutOfBoundsException e){
+                System.out.println("Index out of bounds");
+        }
+        return turnComplete;
+    }
     
     public static void populate2dArray(int [][] array, int value){
         for(int i = 0; i <array.length; i++){
@@ -114,6 +149,14 @@ public class newQuestions
     }
     
     public static void print2dArray(int [][] array){
+        for(int i = 0; i <array.length; i++){
+            for(int j = 0; j < array.length; j++){
+                System.out.print(array[i][j] + "\t");
+            }
+            System.out.print("\n");
+        }
+    }
+    public static void print2dArray(String [][] array){
         for(int i = 0; i <array.length; i++){
             for(int j = 0; j < array.length; j++){
                 System.out.print(array[i][j] + "\t");
