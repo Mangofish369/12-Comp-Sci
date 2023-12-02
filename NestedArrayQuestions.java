@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.ArrayIndexOutOfBoundsException;
 import java.lang.Exception;
-public class newQuestions
+public class NestedArrayQuestions
 {
     public static void Question1 (){
         int [][] multiplicationTable = new int [25][25];
@@ -63,11 +63,17 @@ public class newQuestions
         int size = 3;
         String [][] grid = new String [size][size];
         populate2dArray(grid, "-");
+        String [] teams = {"X","O"};
+        String curPlayer = teams[0];
         print2dArray(grid);
+        boolean turnComplete;
         
-        while(!addPoint(grid, "X")){
-            addPoint(grid, "X");
+        while(!findWinner(grid, teams)){
+            turnComplete = addPoint(grid, curPlayer);
             print2dArray(grid);
+            if(turnComplete){
+                curPlayer = changePlayer(curPlayer, teams);
+            }
         }
     }
     
@@ -101,10 +107,10 @@ public class newQuestions
     
     public static boolean addPoint(String [][] array, String player){
         Scanner input = new Scanner (System.in);
-        System.out.println("Please enter x: ");
+        System.out.println("Player: ["+player+"]'s x-cord: ");
         int x = input.nextInt(); 
         
-        System.out.println("Please enter y: ");
+        System.out.println("Player: ["+player+"]'s y-cord: ");
         int y = input.nextInt();
         Boolean turnComplete = false;
         
@@ -123,17 +129,77 @@ public class newQuestions
         }
         return turnComplete;
     }
+    public static String changePlayer (String curPlayer, String[] teams){
+        if(curPlayer.equals(teams[0])){
+            curPlayer = teams[1];
+        } else{
+            curPlayer = teams[0];
+        }
+        return curPlayer;
+    }
+    
+    public static boolean findWinner (String[][] array, String[] teams){
+        if(checkRows(array,teams) || checkColumns(array,teams) || checkDiagonals(array,teams)){
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean checkRows(String[][] array,String [] teams){
+        for(String t : teams){
+            for(int i = 0; i <array.length; i++){
+                for(int j = 0; j < array[i].length; j++){
+                    if(array[i][j].equals(t)){
+                        if(j+2 < array[i].length && array[i][j+1].equals(t) && array[i][j+2].equals(t)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static boolean checkColumns(String[][] array, String [] teams){
+        for(String t: teams){
+            for(int j = 0; j < array[0].length; j++){
+                for(int i = 0; i < array.length; i++){
+                    if(array[i][j].equals(t)){
+                        if(i+2 < array.length && array[i+1][j].equals(t) && array[i+2][j].equals(t)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    
+    public static boolean checkDiagonals(String [][] array, String [] teams){
+        for(String t: teams){
+            for(int j = 0; j< array[0].length; j++){
+                for(int i = 0; i < array.length; i++){
+                    if(array[i][j].equals(t)){
+                        if(i+2 < array.length && j+2 < array[0].length && array[i+1][j+1].equals(t) && array[i+2][j+2].equals(t)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
     
     public static void populate2dArray(int [][] array, int value){
         for(int i = 0; i <array.length; i++){
-            for(int j = 0; j < array.length; j++){
+            for(int j = 0; j < array[i].length; j++){
                 array[i][j] = value;
             }
         }
     }
     public static void populate2dArray(String [][] array, String value){
         for(int i = 0; i<array.length; i++){
-            for(int j =0; j < array.length; j++){
+            for(int j =0; j < array[i].length; j++){
                 array[i][j] = value;
             }
         }
@@ -146,7 +212,7 @@ public class newQuestions
     
     public static void print2dArray(int [][] array){
         for(int i = 0; i <array.length; i++){
-            for(int j = 0; j < array.length; j++){
+            for(int j = 0; j < array[i].length; j++){
                 System.out.print(array[i][j] + "\t");
             }
             System.out.print("\n");
@@ -154,7 +220,7 @@ public class newQuestions
     }
     public static void print2dArray(String [][] array){
         for(int i = 0; i <array.length; i++){
-            for(int j = 0; j < array.length; j++){
+            for(int j = 0; j < array[i].length; j++){
                 System.out.print(array[i][j] + "\t");
             }
             System.out.print("\n");
