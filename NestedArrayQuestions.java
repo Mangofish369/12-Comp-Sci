@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.ArrayIndexOutOfBoundsException;
 import java.lang.Exception;
+import java.util.InputMismatchException;
 public class NestedArrayQuestions
 {
     public static void Question1 (){
@@ -66,14 +67,31 @@ public class NestedArrayQuestions
         String [] teams = {"X","O"};
         String curPlayer = teams[0];
         print2dArray(grid);
+        int numOfTurns = 0;
         boolean turnComplete;
+        boolean isThereAWinner = true;
         
         while(!findWinner(grid, teams)){
-            turnComplete = addPoint(grid, curPlayer);
-            print2dArray(grid);
-            if(turnComplete){
-                curPlayer = changePlayer(curPlayer, teams);
+            // Ran out of turns means no winner
+            if(numOfTurns > 8){
+                System.out.println("Tie");
+                isThereAWinner = false;
+                break;
             }
+            
+            turnComplete = addPoint(grid, curPlayer); // Check if a successful turn has been made
+            print2dArray(grid);
+            
+            // As long as game is not over, switch to the next player and mark a turn as complete
+            if(!findWinner(grid,teams) && turnComplete){
+                curPlayer = changePlayer(curPlayer, teams);
+                numOfTurns++;
+            } 
+        }
+        
+        // Winner Of Tic Tac Toe Message
+        if(isThereAWinner){
+            System.out.println(curPlayer+ " wins!!");
         }
     }
     
@@ -105,14 +123,32 @@ public class NestedArrayQuestions
         }
     }
     
+    /*
+     * Use Try and Catch to find input mismatch exceptions and array out of bounds exceptions
+     */
     public static boolean addPoint(String [][] array, String player){
         Scanner input = new Scanner (System.in);
-        System.out.println("Player: ["+player+"]'s x-cord: ");
-        int x = input.nextInt(); 
+        int x;
+        int y;
+        boolean turnComplete = false;
         
-        System.out.println("Player: ["+player+"]'s y-cord: ");
-        int y = input.nextInt();
-        Boolean turnComplete = false;
+        try{
+            System.out.println("Player: ["+player+"]'s x-cord: ");
+            x = input.nextInt(); 
+        }
+        catch(InputMismatchException e){
+            System.out.println("Please enter an integer");
+            return false;
+        }
+        
+        try{
+            System.out.println("Player: ["+player+"]'s y-cord: ");
+            y = input.nextInt();
+        }
+        catch(InputMismatchException e){
+            System.out.println("Please enter an integer");
+            return false;
+        }
         
         try{
             String current = array[y][x];
@@ -146,11 +182,12 @@ public class NestedArrayQuestions
     }
     
     public static boolean checkRows(String[][] array,String [] teams){
-        for(String t : teams){
+        for(String t : teams){ // For each team
             for(int i = 0; i <array.length; i++){
                 for(int j = 0; j < array[i].length; j++){
-                    if(array[i][j].equals(t)){
-                        if(j+2 < array[i].length && array[i][j+1].equals(t) && array[i][j+2].equals(t)){
+                    if(array[i][j].equals(t)){ 
+                        // Check the next two elements ahead in the same row
+                        if(j+2 < array[i].length && array[i][j+1].equals(t) && array[i][j+2].equals(t)){ 
                             return true;
                         }
                     }
@@ -165,6 +202,7 @@ public class NestedArrayQuestions
             for(int j = 0; j < array[0].length; j++){
                 for(int i = 0; i < array.length; i++){
                     if(array[i][j].equals(t)){
+                        // Check the next two elements ahead in the same column
                         if(i+2 < array.length && array[i+1][j].equals(t) && array[i+2][j].equals(t)){
                             return true;
                         }
@@ -180,7 +218,12 @@ public class NestedArrayQuestions
             for(int j = 0; j< array[0].length; j++){
                 for(int i = 0; i < array.length; i++){
                     if(array[i][j].equals(t)){
+                        // Check the next two elements ahead diagonally
                         if(i+2 < array.length && j+2 < array[0].length && array[i+1][j+1].equals(t) && array[i+2][j+2].equals(t)){
+                            return true;
+                        } 
+                        //Check the next two elements behind diagonally
+                        else if(i-2 > 0 && j-2 > 0 && array[i-1][j-1].equals(t) && array[i-2][j-2].equals(t)){
                             return true;
                         }
                     }

@@ -23,6 +23,7 @@ comment4.target=void\ move(java.lang.String,\ int[][],\ int[])
 comment4.text=\r\n\ 2D\ arrays\ can\ better\ be\ visualized\ as\ a\ nested\ array\r\n\ \ -\ The\ first\ value\ represents\ rows\ (aka\ y-cord)\r\n\ \ -\ The\ second\ value\ represents\ the\ index\ of\ the\ nested\ array;\ you\ can\ imagine\ it\ as\ coloums\ in\ this\ case\ (aka\ x-cord)\r\n\ To\ work\ around\ this,\ the\ x\ and\ y\ values\ must\ be\ switched\ around\r\n
 comment5.params=array\ player
 comment5.target=boolean\ addPoint(java.lang.String[][],\ java.lang.String)
+comment5.text=\r\n\ Use\ Try\ and\ Catch\ to\ find\ input\ mismatch\ exceptions\ and\ array\ out\ of\ bounds\ exceptions\r\n
 comment6.params=curPlayer\ teams
 comment6.target=java.lang.String\ changePlayer(java.lang.String,\ java.lang.String[])
 comment7.params=array\ teams
