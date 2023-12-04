@@ -23,7 +23,7 @@ public class CSVReader
     }
     
     public static void readData(){
-        ArrayList <String> data = new ArrayList <>();
+        ArrayList <String> currString = new ArrayList <>();
         try{
             s = new Scanner(new File("visadata_nocommas.csv"));
         }
@@ -35,18 +35,23 @@ public class CSVReader
         int numOfLines = 0;
         int debit = 0;
         int credit = 0;
+        String updatedLine;
         while(moreLines){
             try{
-                seperate(s.nextLine(),data);
-                System.out.println("Index 3: "+ data.get(3));
-                if(data.get(2).equals(null)){
+                // Add the asterisk where the credit/debit goes so string tokenizer can detect it
+                updatedLine = addAsterisk(s.nextLine()); 
+                
+                // Use string tokenizer to seperate the string into a token and add each token to the temporary arraylist
+                seperate(updatedLine,currString); 
+                System.out.println("Index 3: "+ currString.get(2));
+                if(currString.get(2).equals("*")){ // If the asterisk is infront of the transaction amount it is a credit transaction
                     credit++;
                 }
                 else{
-                    credit++;
+                    debit++;
                 }
                 numOfLines++;
-                data.removeAll(data);   
+                currString.removeAll(currString); // Empty the temporary arraylist of string  
             }
             catch (NoSuchElementException e){
                 moreLines = false;
@@ -76,16 +81,21 @@ public class CSVReader
             }
         }
     }
+    /**
+     * Method to add an Asterisk ('*') in empty spaces where debit/credit goes so it can be read by the string tokenizer
+     * String tokenizer skips empty tokens ie. ",,"
+     */
     public static String addAsterisk (String text){
         String updated = "";
         char curr;
         char nextCurr;
         for(int i = 0; i< text.length(); i++){
             curr = text.charAt(i);
-            nextCurr = text.charAt(i+1);
-            if(i+1 < length() && curr.equals("," )){
-                if(curr.equals(nextCurr)){
-                    updated = text.substring(0,i)+ '*' + text.substring(i);
+            
+            if(i+1 < text.length() && curr == ',' ){
+                nextCurr = text.charAt(i+1);
+                if(curr == nextCurr){
+                    updated = text.substring(0,i+1)+ "*" + text.substring(i+1);
                 }
             }
         }
