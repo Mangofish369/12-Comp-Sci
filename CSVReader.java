@@ -5,10 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 /**
- * Write a description of class CSVReader here.
+ * CSV Reader Class
+ * 
+ * - Use the method readData() to see the analysis of your CIBC Visa account 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Vincent
+ * @version December 5,2023
  */
 public class CSVReader
 {
@@ -35,6 +37,7 @@ public class CSVReader
         int numOfLines = 0;
         int debit = 0;
         int credit = 0;
+        double sumOfDebits = 0;
         String updatedLine;
         while(moreLines){
             try{
@@ -43,23 +46,31 @@ public class CSVReader
                 
                 // Use string tokenizer to seperate the string into a token and add each token to the temporary arraylist
                 seperate(updatedLine,currString); 
-                System.out.println("Index 3: "+ currString.get(2));
                 if(currString.get(2).equals("*")){ // If the asterisk is infront of the transaction amount it is a credit transaction
                     credit++;
                 }
                 else{
                     debit++;
+                    
+                    //If it is a debit transaction, add the value to the total sum of debits
+                    String debitValue = currString.get(2);
+                    sumOfDebits += Double.parseDouble(debitValue);
                 }
                 numOfLines++;
                 currString.removeAll(currString); // Empty the temporary arraylist of string  
             }
             catch (NoSuchElementException e){
                 moreLines = false;
-                System.out.println("END");
+                //System.out.println("END");
             }
         }
-        System.out.println("debilt: "+debit);
-        System.out.println("credit: "+credit);
+        //Round sum of debits to 2 decimal places
+        sumOfDebits  = (double)Math.round(sumOfDebits*100)/100;
+        
+        System.out.println("Total Transactions: " +(debit+credit));
+        System.out.println("Total # of debit transactions: "+debit);
+        System.out.println("Total # of credit transactions: "+credit);
+        System.out.println("Value of all debits: " + sumOfDebits);
     }
     public static void printLines(){
         try{
