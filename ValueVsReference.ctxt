@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=ValueVsReference
+comment1.params=
+comment1.target=void\ q1()
+comment2.params=
+comment2.target=void\ q2()
+comment3.params=
+comment3.target=void\ q3()
+comment4.params=
+comment4.target=void\ q4()
+comment5.params=
+comment5.target=void\ q5()
+comment6.params=arr
+comment6.target=void\ add2ToAll(int[])
+comment7.params=
+comment7.target=void\ q6()
+comment8.params=s
+comment8.target=void\ shorten(java.lang.String)
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10
