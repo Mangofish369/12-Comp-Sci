@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=FastSort
+comment1.params=
+comment1.target=FastSort()
+comment2.params=array
+comment2.target=void\ recursionSort(int[])
+comment2.text=\r\n\ This\ is\ the\ fastest,\ least\ complicated\ and\ easiest\ to\ read\r\n\ sorting\ algorithm.\ Without\ a\ doubt\ a\ once\ in\ a\ life\ time\ invention.\r\n
+comment3.params=array\ first\ second
+comment3.target=void\ swap(int[],\ int,\ int)
+numComments=4
