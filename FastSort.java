@@ -22,11 +22,4 @@ public class FastSort
             }
         }
     }
-    public static void swap(int[] array, int first, int second){
-        int firstValue = array[first];
-        int secondValue = array [second];
-        
-        array[first] = secondValue;
-        array[second] = firstValue;
-    }
 }
